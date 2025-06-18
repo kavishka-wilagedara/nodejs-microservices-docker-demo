@@ -71,7 +71,7 @@ dist/
 
 # Ignore docker files
 docker-compose.override.yml
-Dockerfile
+
 
 # Ignore AWS SAM build artifacts
 .aws-sam/build/
