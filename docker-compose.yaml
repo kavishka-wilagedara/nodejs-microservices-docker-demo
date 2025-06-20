@@ -9,7 +9,7 @@ services:
     networks:
       - app-network
     environment:
-      - DATABASE_URL=${DATABASE_URL}
+      - DATABASE_URL=mongodb://book-service-db:27017/books
     depends_on:
       - book-service-db
 
