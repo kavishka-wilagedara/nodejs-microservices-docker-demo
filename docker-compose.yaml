@@ -1,11 +1,19 @@
 # version: "3.8"
 services:
+  book-service-db:
+    image: mongo:latest
+    container_name: book-service-db
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - app-network
+
   book-service:
     build: ./book-service
     image: book-service:latest
     container_name: book-service
     ports:
-      - 3001:3000
+      - 3000:3000
     networks:
       - app-network
     environment:
@@ -13,25 +21,16 @@ services:
     depends_on:
       - book-service-db
 
-  book-service-db:
-    image: mongo:latest
-    container_name: book-service-db
+  loan-service:
+    build: ./loan-service
+    image: loan-service:latest
+    container_name: loan-service
+    ports:
+      - 3001:3001
     networks:
       - app-network
-    volumes:
-      - mongo-data:/data/db
-
-loan-service:
-  build: ./loan-service
-  image: loan-service:latest
-  container_name: loan-service
-  ports:
-    - 3001:3001
-  networks:
-    - app-network
-  environment:
-    - BOOK_SERVICE_URL=http://book-service:3000
-
+    environment:
+      - BOOK_SERVICE_URL=http://book-service:3000
 volumes:
   mongo-data:
 
