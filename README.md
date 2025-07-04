@@ -21,8 +21,12 @@ Each service runs in its own container, ensuring isolation and scalability for e
 ## 🚀 Getting Started
 
 ### 1. Clone the repository
+```
 git clone <your-repository-url>
 cd <your-repository-folder>
+```
 
 ### 2. Build and run the services
+```
 docker-compose up --build
+```
